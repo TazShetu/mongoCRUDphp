@@ -3,19 +3,23 @@ require_once "db.php";
 $user_collection = $db->users;
 
 //// update 1 document (1 row)
-//$update = $user_collection->updateOne(
-//    ["password" => "123456789"],
-//    ['$set' => ["new_tag" => "matched"]]
-//        // even if there is no new_tag mongoDB will create one automatically
-//        // if multiple documents matches the condition, will update only the first one
-//);
-//// .... SET new_tag = "matched" WHERE password = "123456789" (LIMIT 1)
-//
-//// how many documents have been matched
-//var_dump($update->getMatchedCount());
-//
-//// how many document has been modified, will be one for updateOne()
-//var_dump($update->getModifiedCount());
+$update = $user_collection->updateOne(
+    ["name" => "John"],
+    [
+        '$set' => ["new_tag" => "matched"],
+        '$currentDate' => ['updated_at' => true]
+            // will auto add updated_at to current time
+    ]
+        // even if there is no new_tag mongoDB will create one automatically
+        // if multiple documents matches the condition, will update only the first one
+);
+// .... SET new_tag = "matched" WHERE password = "123456789" (LIMIT 1)
+
+// how many documents have been matched
+var_dump($update->getMatchedCount());
+
+// how many document has been modified, will be one for updateOne()
+var_dump($update->getModifiedCount());
 
 
 //// update multiple documents (many row)
@@ -33,21 +37,21 @@ $user_collection = $db->users;
 //var_dump($update->getModifiedCount());
 
 
-// replace an entire document (1 row replace)
-$update = $user_collection->replaceOne(
-    ["_id" => "2"],
-    ["color" => "red", "aim" => "good"]
-    // if multiple documents matches the condition, will replace only the first one
-);
-// the entire document will be replaced by the new set of tags and values except _id
-// there is no replaceMany() method
+//// replace an entire document (1 row replace)
+//$update = $user_collection->replaceOne(
+//    ["_id" => "2"],
+//    ["color" => "red", "aim" => "good"]
+//    // if multiple documents matches the condition, will replace only the first one
+//);
+//// the entire document will be replaced by the new set of tags and values except _id
+//// there is no replaceMany() method
 
 
-// how many documents have been matched
-var_dump($update->getMatchedCount());     // always 1
-
-// how many document has been modified, will be one for updateOne()
-var_dump($update->getModifiedCount());
+//// how many documents have been matched
+//var_dump($update->getMatchedCount());     // always 1
+//
+//// how many document has been modified, will be one for updateOne()
+//var_dump($update->getModifiedCount());
 
 die('updated');
 
