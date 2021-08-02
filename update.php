@@ -1,6 +1,11 @@
 <?php
 require_once "db.php";
-$user_collection = $db->users;
+if (isset($db)) {
+    // select collection
+    $user_collection = $db->users;
+} else {
+    die('no DB has been selected');
+}
 
 //// update 1 document (1 row)
 $update = $user_collection->updateOne(
@@ -8,7 +13,7 @@ $update = $user_collection->updateOne(
     [
         '$set' => ["new_tag" => "matched"],
         '$currentDate' => ['updated_at' => true]
-            // will auto add updated_at to current time
+            // will auto add/update updated_at to current time (UTC timezone)
     ]
         // even if there is no new_tag mongoDB will create one automatically
         // if multiple documents matches the condition, will update only the first one

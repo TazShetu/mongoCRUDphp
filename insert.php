@@ -1,14 +1,19 @@
 <?php
 require_once "db.php";
+if (isset($db)) {
+    // select collection
+    $user_collection = $db->users;
+} else {
+    die('no DB has been selected');
+}
 
-$user_collection = $db->users;
 // if validation_test (collection [table]) does not exists
     // MongoDB will automatically create new one
 
 /////***  INSERT 1 DOCUMENT (1 row)  ***/////
 $insert = $user_collection->insertOne(
                                         [
-                                            'name' => 'John',
+                                            'name' => ['Rahim', 'b', 'k'],
                                             'email' => 'j@g.com',
                                             'password' => '123456789',
                                             'created_at' => new MongoDB\BSON\UTCDateTime()

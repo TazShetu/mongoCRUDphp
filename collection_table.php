@@ -19,72 +19,72 @@ require_once "db.php";
 
 
 ///***///***  VALIDATION  ***///***///
-//$db->createCollection(
-//    "validation_test",
-//    [
-//        "validator" => [
-//            '$jsonSchema' => [
-//                "bsonType" => "object",
-//                "required" => ["name", "year", "status", "major", "address"],
-//                "properties" => [
-//                    "name" => [
-//                        "bsonType" => "string",
-//                        "description" => "must be a string and is required"
-//                    ],
-//                    "year" => [
-//                        "bsonType" => "int",
-//                        "minimum" => 1971,
-//                        "maximum" => 3071,
-//                        "description" => "must be an integer in [ 1971, 3071 ] and is required"
-//                    ],
-//                    "major" => [
-//                        "enum" => ["Math", "English", "Computer Science", "History", null],
-//                        "description" => "can only be one of the enum values and is required"
-//                    ],
-//                    "address" => [
-//                        "bsonType" => "object",
-//                        "required" => ["house", "road", "city"],
-//                        "properties" => [
-//                            "house" => [
-//                                "bsonType" => "string",
-//                                "description" => "must be a string and is required"
-//                            ],
-//                            "road" => [
-//                                "bsonType" => "string",
-//                                "description" => "must be a string and is required"
-//                            ],
-//                            "city" => [
-//                                "bsonType" => "string",
-//                                "description" => "must be a string and is required"
-//                            ],
-//                            "country" => [
-//                                "bsonType" => "string",
-//                                "description" => "must be a string if the field exists"
-//                            ],
-//                        ]
-//                    ],
-//                    "gpa" => [
-//                        "bsonType" => "double",
-//                        "description" => "must be a double if the field exists"
-//                    ],
-//                ],
-//            ],
-//            '$or' => [
-//                [
-//                    "status" => [
-//                        '$in' => ["active", "inactive"]
-//                    ],
-//                    "email" => [
-//                        '$regex' => "/@\.com$/",
-//                    ],
-//                    "example" => [
-//                        "type" => "string"
-//                    ]
-//                ]
-//            ]
-//        ]
-//    ]
-//);
+$db->createCollection(
+    "validation_test",
+    [
+        "validator" => [
+            '$jsonSchema' => [
+                "bsonType" => "object",
+                "required" => ["name", "year", "status", "major", "address"],
+                "properties" => [
+                    "name" => [
+                        "bsonType" => "string",
+                        "description" => "must be a string and is required"
+                    ],
+                    "year" => [
+                        "bsonType" => "int",
+                        "minimum" => 1971,
+                        "maximum" => 3071,
+                        "description" => "must be an integer in [ 1971, 3071 ] and is required"
+                    ],
+                    "major" => [
+                        "enum" => ["Math", "English", "Computer Science", "History", null],
+                        "description" => "can only be one of the enum values and is required"
+                    ],
+                    "address" => [
+                        "bsonType" => "object",
+                        "required" => ["house", "road", "city"],
+                        "properties" => [
+                            "house" => [
+                                "bsonType" => "string",
+                                "description" => "must be a string and is required"
+                            ],
+                            "road" => [
+                                "bsonType" => "string",
+                                "description" => "must be a string and is required"
+                            ],
+                            "city" => [
+                                "bsonType" => "string",
+                                "description" => "must be a string and is required"
+                            ],
+                            "country" => [
+                                "bsonType" => "string",
+                                "description" => "must be a string if the field exists"
+                            ],
+                        ]
+                    ],
+                    "gpa" => [
+                        "bsonType" => "double",
+                        "description" => "must be a double if the field exists"
+                    ],
+                ],
+            ],
+            '$or' => [
+                [
+                    "status" => [
+                        '$in' => ["active", "inactive"]
+                    ],
+                    "email" => [
+                        '$regex' => "/@\.com$/",
+                    ],
+                    "example" => [
+                        "type" => "string"
+                    ]
+                ]
+            ]
+        ]
+    ]
+);
 
 
 
