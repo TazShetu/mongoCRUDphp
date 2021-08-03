@@ -195,8 +195,10 @@ if (isset($db)) {
 //{ email: { $regex: /^j/i } }
 //{ email: /^J/i  }
 $documents = $user_collection->find(
-    ["email" => ['$regex' => "/^j/i"]]
-//    ["email" => '/^j/i']
+    ["email" => ['$regex' => "o", '$options'=>'i']]
+// LIKE %o% // i is for case insensitive
+// ["email" => ['$regex' => "^o", '$options'=>'i']]	// LIKE o%	starts with o
+// ["email" => ['$regex' => "o$", '$options'=>'i']]	// LIKE %o	ends with o
 );
 
 
@@ -208,7 +210,7 @@ $documents = $user_collection->find(
 
 
 
-var_dump($documents);
+//var_dump($documents);
 foreach ($documents as $document) {
     var_dump($document);
 }
