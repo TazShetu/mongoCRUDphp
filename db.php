@@ -1,7 +1,7 @@
 <?php
 require_once "vendor/autoload.php";
 $client = new MongoDB\Client("mongodb://localhost:27017");
-                            //"mongodb+srv://<username>:<password>@<cluster-address>/test?retryWrites=true&w=majority"
+//$client = new MongoDB\Client("mongodb://localhost:27017", ["username" => "mongod_admin_all_db", "password" => "nYQP3,j_-=E(;<zz"]);
 
 // list of database
 //var_dump($client->listDatabases());
